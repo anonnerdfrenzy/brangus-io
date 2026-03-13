@@ -215,8 +215,7 @@ export default function PhysarumBackground() {
           const c = chemical[i];
 
           if (s === 3) {
-            // Solid text
-            ctx!.fillStyle = "rgba(255,255,255,0.85)";
+            ctx!.fillStyle = "rgba(255,255,255,0.9)";
             ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
           } else if (s === 4) {
             // Dissolving text - fade out and scatter
@@ -241,6 +240,27 @@ export default function PhysarumBackground() {
             ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
           }
         }
+      }
+
+      // Soft gaussian-ish glow: stack multiple shadow passes at increasing blur
+      const fontSize = Math.min(displayW / 5, 180);
+      ctx!.font = `900 italic ${fontSize}px "Playfair Display", serif`;
+      ctx!.textAlign = "center";
+      ctx!.textBaseline = "middle";
+      ctx!.fillStyle = "rgba(0,0,0,0.001)";
+
+      const glowLayers = [
+        { blur: 60, alpha: 0.15 },
+        { blur: 30, alpha: 0.2 },
+        { blur: 12, alpha: 0.25 },
+      ];
+
+      for (const layer of glowLayers) {
+        ctx!.save();
+        ctx!.shadowColor = `rgba(255,255,255,${layer.alpha})`;
+        ctx!.shadowBlur = layer.blur;
+        ctx!.fillText("BRANGUS", displayW / 2, displayH / 2);
+        ctx!.restore();
       }
     }
 
