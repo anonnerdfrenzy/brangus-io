@@ -115,7 +115,14 @@ export default function PhysarumBackground() {
       }
       [chemical, chemTemp] = [chemTemp, chemical];
 
-      // 2. Process active cells
+      // 2. Text cells emit chemical (attracts mold toward letters)
+      for (let i = 0; i < state.length; i++) {
+        if (state[i] === 3) {
+          chemical[i] = Math.min(1.0, chemical[i] + 0.18);
+        }
+      }
+
+      // 3. Process active cells
       const toTrail: number[] = [];
       const toActive: number[] = [];
       const toDissolve: number[] = [];
@@ -159,8 +166,10 @@ export default function PhysarumBackground() {
               let filledCount = 0;
               for (const [ddx, ddy] of dirs) {
                 const nnx = nx + ddx, nny = ny + ddy;
-                if (inBounds(nnx, nny) && state[idx(nnx, nny)] > 0 && state[idx(nnx, nny)] !== 3) {
-                  filledCount++;
+                if (inBounds(nnx, nny)) {
+                  const nns = state[idx(nnx, nny)];
+                  // Only count mold cells, not text or dissolving
+                  if (nns === 1 || nns === 2) filledCount++;
                 }
               }
               if (filledCount <= 2) {
