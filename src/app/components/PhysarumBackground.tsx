@@ -128,8 +128,10 @@ export default function PhysarumBackground() {
           if (state[i] === 4) {
             dissolve[i] += 0.03;
             chemical[i] = Math.max(0, chemical[i] - 0.02);
+            // Spread dissolve to neighboring text cells
+            // No spread — only direct mold contact dissolves text
             if (dissolve[i] >= 1) {
-              state[i] = 0; // fully dissolved -> empty
+              state[i] = 0;
             }
             continue;
           }
