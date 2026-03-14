@@ -7,10 +7,15 @@ type Post = {
   pubDate: string;
   contentSnippet: string;
   creator: string;
+  image: string;
 };
 
 async function getPosts(): Promise<Post[]> {
-  const parser = new Parser();
+  const parser = new Parser({
+    customFields: {
+      item: [["enclosure", "enclosure", { keepArray: false }]],
+    },
+  });
   const feed = await parser.parseURL("https://ratorthodox.substack.com/feed");
   return (feed.items ?? []).map((item) => ({
     title: item.title ?? "",
@@ -18,6 +23,7 @@ async function getPosts(): Promise<Post[]> {
     pubDate: item.pubDate ?? "",
     contentSnippet: item.contentSnippet?.slice(0, 200) ?? "",
     creator: item.creator ?? "",
+    image: (item.enclosure as { url?: string })?.url ?? "",
   }));
 }
 
@@ -49,7 +55,7 @@ export default async function BlogPage() {
           </a>
         </p>
 
-        <div className="space-y-12">
+        <div className="space-y-16">
           {posts.map((post) => {
             const date = new Date(post.pubDate);
             const dateStr = date.toLocaleDateString("en-US", {
@@ -66,6 +72,16 @@ export default async function BlogPage() {
                 rel="noopener noreferrer"
                 className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors"
               >
+                {post.image && (
+                  <div className="mb-4 overflow-hidden rounded">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={post.image}
+                      alt=""
+                      className="w-full h-72 object-cover opacity-70 group-hover:opacity-90 transition-opacity"
+                    />
+                  </div>
+                )}
                 <time className="font-mono text-xs text-white/30 block mb-2">
                   {dateStr}
                 </time>
