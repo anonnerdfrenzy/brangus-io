@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
-body {
-  background: #ffffff;
-  margin: 0;
+@layer base {
+  html {
+    background-color: #010101;
+    background-image: linear-gradient(transparent, transparent);
+    background-repeat: repeat;
+  }
+
+  body {
+    background-color: #010101;
+    margin: 0;
+  }
 }

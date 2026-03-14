@@ -12,6 +12,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "brangus.io",
   description: "brangus.io",
+  themeColor: "#010101",
 };
 
 export default function RootLayout({
@@ -21,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={playfair.variable}>{children}</body>
+      <body className={`${playfair.variable} bg-[#010101]`}>{children}</body>
     </html>
   );
 }

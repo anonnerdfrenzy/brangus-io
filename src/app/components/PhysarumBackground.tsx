@@ -420,7 +420,7 @@ export default function PhysarumBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, background: "#000" }}
     />
   );
 }
