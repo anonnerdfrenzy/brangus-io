@@ -17,10 +17,6 @@ export default function Home() {
       {/* Content below */}
       <section className="relative z-10 border-t border-white/10">
         <div className="max-w-3xl mx-auto px-6 py-24">
-          <h2 className="text-xs uppercase tracking-[0.3em] text-white/40 mb-16 font-mono">
-            Projects
-          </h2>
-
           <div className="space-y-16">
             <Link href="/blog" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Writing</h3>
