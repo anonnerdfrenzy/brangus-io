@@ -41,7 +41,7 @@ export default function Home() {
 
         <footer className="border-t border-white/10 py-8 px-6">
           <div className="max-w-3xl mx-auto flex justify-between">
-            <span className="font-mono text-xs text-white/30">brangus.io</span>
+            <span className="font-mono text-xs text-white/30 flex items-center gap-1.5"><img src="/raccoon.svg" alt="" className="w-4 h-4" />brangus.io</span>
             <span className="font-mono text-xs text-white/30">2026</span>
           </div>
         </footer>

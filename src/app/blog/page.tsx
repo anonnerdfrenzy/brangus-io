@@ -82,8 +82,8 @@ export default async function BlogPage() {
     <div className="min-h-screen bg-black text-white">
       <nav className="border-b border-white/10 px-6 py-6">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/" className="font-mono text-xs text-white/40 hover:text-white transition-colors">
-            &larr; brangus.io
+          <Link href="/" className="font-mono text-xs text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
+            &larr; <img src="/raccoon.svg" alt="" className="w-4 h-4" />brangus.io
           </Link>
           <span className="font-mono text-xs text-white/40">blog</span>
         </div>
@@ -166,7 +166,7 @@ export default async function BlogPage() {
 
       <footer className="border-t border-white/10 py-8 px-6">
         <div className="max-w-5xl mx-auto flex justify-between">
-          <span className="font-mono text-xs text-white/30">brangus.io</span>
+          <span className="font-mono text-xs text-white/30 flex items-center gap-1.5"><img src="/raccoon.svg" alt="" className="w-4 h-4" />brangus.io</span>
           <span className="font-mono text-xs text-white/30">2026</span>
         </div>
       </footer>
