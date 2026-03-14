@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PhysarumBackground from "./components/PhysarumBackground";
 
 export default function Home() {
@@ -21,25 +22,20 @@ export default function Home() {
           </h2>
 
           <div className="space-y-16">
-            <div className="border-l border-white/20 pl-6">
-              <h3 className="text-2xl font-bold mb-2">Signal / Noise</h3>
-              <p className="text-white/50 font-mono text-sm">Data visualization experiments</p>
-            </div>
+            <Link href="/blog" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Writing</h3>
+              <p className="text-white/50 font-mono text-sm">Blog posts from ratorthodox.substack.com</p>
+            </Link>
 
-            <div className="border-l border-white/20 pl-6">
-              <h3 className="text-2xl font-bold mb-2">Chromatic</h3>
-              <p className="text-white/50 font-mono text-sm">Interactive color theory playground</p>
-            </div>
-
-            <div className="border-l border-white/20 pl-6">
-              <h3 className="text-2xl font-bold mb-2">Typeface Arena</h3>
-              <p className="text-white/50 font-mono text-sm">Side-by-side font comparisons</p>
-            </div>
-
-            <div className="border-l border-white/20 pl-6">
-              <h3 className="text-2xl font-bold mb-2">Pulse</h3>
-              <p className="text-white/50 font-mono text-sm">Real-time audio visualizer</p>
-            </div>
+            <a
+              href="https://x.com/ratorthodox"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors"
+            >
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Microwriting</h3>
+              <p className="text-white/50 font-mono text-sm">@ratorthodox on X</p>
+            </a>
           </div>
         </div>
 

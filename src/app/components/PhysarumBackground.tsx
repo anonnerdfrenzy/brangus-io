@@ -91,6 +91,7 @@ export default function PhysarumBackground() {
     }
 
     function spawnAt(gridX: number, gridY: number) {
+      hasSecondary = true;
       const g = nextGen++;
       for (let dy = -3; dy <= 3; dy++) {
         for (let dx = -3; dx <= 3; dx++) {
@@ -281,50 +282,74 @@ export default function PhysarumBackground() {
       }
     }
 
-    function render() {
-      ctx!.fillStyle = "#000000";
-      ctx!.fillRect(0, 0, displayW, displayH);
+    // Offscreen canvas at sim resolution
+    let offCanvas = document.createElement("canvas");
+    offCanvas.width = cols;
+    offCanvas.height = rows;
+    let offCtx = offCanvas.getContext("2d")!;
 
+    function render() {
+      // Render sim at grid resolution using ImageData (one draw call)
+      const imgData = offCtx.createImageData(cols, rows);
+      const px = imgData.data;
+
+      for (let i = 0; i < cols * rows; i++) {
+        const s = state[i];
+        const s2 = state2[i];
+        const c = chemical[i];
+        const c2 = chem2[i];
+        let v = 0;
+
+        // Primary layer
+        if (s === 3) {
+          v = 230;
+        } else if (s === 4) {
+          const d = dissolve[i];
+          v = Math.floor(217 * (1 - d));
+        } else if (s === 1) {
+          v = Math.floor((0.7 + c * 0.3) * 255);
+        } else if (s === 2) {
+          v = Math.floor((0.1 + c * 0.4) * 255);
+        } else if (c > 0.02) {
+          v = Math.floor(c * 0.12 * 255);
+        }
+
+        // Secondary layer (take max)
+        if (s2 === 1) {
+          v = Math.max(v, Math.floor((0.7 + c2 * 0.3) * 255));
+        } else if (s2 === 2) {
+          v = Math.max(v, Math.floor((0.1 + c2 * 0.4) * 255));
+        }
+
+        const pi = i * 4;
+        px[pi] = v;
+        px[pi + 1] = v;
+        px[pi + 2] = v;
+        px[pi + 3] = 255;
+      }
+
+      offCtx.putImageData(imgData, 0, 0);
+
+      // Scale up to display size
+      ctx!.imageSmoothingEnabled = false;
+      ctx!.drawImage(offCanvas, 0, 0, displayW, displayH);
+
+      // Dissolving jitter overlay (only for dissolving cells, usually few)
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
           const i = idx(x, y);
-          const s = state[i];
-          const s2 = state2[i];
-          const c = chemical[i];
-          const c2 = chem2[i];
-
-          // Primary layer
-          if (s === 3) {
-            ctx!.fillStyle = "rgba(255,255,255,0.9)";
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-          } else if (s === 4) {
+          if (state[i] === 4) {
             const d = dissolve[i];
-            const alpha = 0.85 * (1 - d);
-            if (alpha > 0.01) {
+            if (d > 0.1) {
               const jitter = d * 3;
               const jx = (Math.random() - 0.5) * jitter;
               const jy = (Math.random() - 0.5) * jitter;
-              ctx!.fillStyle = `rgba(255,255,255,${alpha})`;
-              ctx!.fillRect(x * SCALE + jx, y * SCALE + jy, SCALE, SCALE);
+              const alpha = 0.85 * (1 - d);
+              if (alpha > 0.01) {
+                ctx!.fillStyle = `rgba(255,255,255,${alpha})`;
+                ctx!.fillRect(x * SCALE + jx, y * SCALE + jy, SCALE, SCALE);
+              }
             }
-          } else if (s === 1) {
-            ctx!.fillStyle = `rgba(255,255,255,${0.7 + c * 0.3})`;
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-          } else if (s === 2) {
-            ctx!.fillStyle = `rgba(255,255,255,${0.1 + c * 0.4})`;
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-          } else if (c > 0.02) {
-            ctx!.fillStyle = `rgba(255,255,255,${c * 0.12})`;
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-          }
-
-          // Secondary layer (additive on top)
-          if (s2 === 1) {
-            ctx!.fillStyle = `rgba(255,255,255,${0.7 + c2 * 0.3})`;
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
-          } else if (s2 === 2) {
-            ctx!.fillStyle = `rgba(255,255,255,${0.1 + c2 * 0.4})`;
-            ctx!.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
           }
         }
       }
@@ -350,9 +375,11 @@ export default function PhysarumBackground() {
 
     let animationId: number;
 
+    let hasSecondary = false;
+
     function loop() {
       stepPrimary();
-      stepSecondary();
+      if (hasSecondary) stepSecondary();
       render();
       animationId = requestAnimationFrame(loop);
     }
@@ -375,6 +402,9 @@ export default function PhysarumBackground() {
       chem2 = new Float32Array(cols * rows);
       chem2Temp = new Float32Array(cols * rows);
       nextGen = 1;
+      offCanvas.width = cols;
+      offCanvas.height = rows;
+      offCtx = offCanvas.getContext("2d")!;
       seed();
     };
 
