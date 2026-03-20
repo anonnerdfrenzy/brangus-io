@@ -32,6 +32,11 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Microwriting</h3>
               <p className="text-white/50 font-mono text-sm">@ratorthodox on X</p>
             </a>
+
+            <Link href="/music" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Music</h3>
+              <p className="text-white/50 font-mono text-sm">Tracks on SoundCloud</p>
+            </Link>
           </div>
         </div>
 
