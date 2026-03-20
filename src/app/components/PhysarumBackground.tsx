@@ -53,6 +53,7 @@ export default function PhysarumBackground() {
       offCtx.textAlign = "center";
       offCtx.textBaseline = "middle";
       offCtx.fillStyle = "white";
+      (offCtx as any).letterSpacing = "0.05em";
       offCtx.fillText("BRANGUS", displayW / 2, displayH / 2);
       const imageData = offCtx.getImageData(0, 0, displayW, displayH);
       const pixels = imageData.data;
@@ -78,9 +79,10 @@ export default function PhysarumBackground() {
       state2.fill(0);
       chem2.fill(0);
       stampText();
+      const centerX = Math.floor(cols / 2);
       for (let dy = 0; dy < 6; dy++) {
-        for (let dx = 0; dx < 6; dx++) {
-          const x = dx;
+        for (let dx = -3; dx <= 3; dx++) {
+          const x = centerX + dx;
           const y = rows - 1 - dy;
           if (inBounds(x, y) && state[idx(x, y)] !== 3) {
             state[idx(x, y)] = 1;
@@ -360,6 +362,7 @@ export default function PhysarumBackground() {
       ctx!.textAlign = "center";
       ctx!.textBaseline = "middle";
       ctx!.fillStyle = "rgba(0,0,0,0.001)";
+      (ctx as any).letterSpacing = "0.05em";
       for (const layer of [
         { blur: 60, alpha: 0.15 },
         { blur: 30, alpha: 0.2 },
