@@ -380,14 +380,20 @@ export default function PhysarumBackground() {
 
     let hasSecondary = false;
 
-    function loop() {
-      stepPrimary();
-      if (hasSecondary) stepSecondary();
+    const SIM_INTERVAL = 1000 / 80; // 80 steps per second
+    let lastStep = 0;
+
+    function loop(now: number) {
+      if (now - lastStep >= SIM_INTERVAL) {
+        stepPrimary();
+        if (hasSecondary) stepSecondary();
+        lastStep = now;
+      }
       render();
       animationId = requestAnimationFrame(loop);
     }
 
-    document.fonts.ready.then(() => { loop(); });
+    document.fonts.ready.then(() => { loop(0); });
 
     const handleResize = () => {
       displayW = window.innerWidth;
