@@ -68,7 +68,7 @@ canvas#seedPreview{display:block;border-radius:8px;cursor:grab}
   </div>
   <div class="seed-preview" id="seedPreviewBox">
     <div class="seed-preview-label">Seed — drag points to edit</div>
-    <canvas id="seedPreview" width="280" height="180"></canvas>
+    <canvas id="seedPreview"></canvas>
   </div>
 </div>
 
@@ -110,7 +110,11 @@ let gridSnap=true, gridSize=40;
 
 
 // preview mapping + drag
-const PVW=280,PVH=180;
+const isTouch='ontouchstart' in window;
+const PVW=isTouch?Math.min(320,window.innerWidth-40):280;
+const PVH=isTouch?240:180;
+pvCanvas.width=PVW;pvCanvas.height=PVH;
+pvCanvas.style.width=PVW+'px';pvCanvas.style.height=PVH+'px';
 let pvSc=1,pvCx=0,pvCy=0,pvDrag=-1;
 
 function computePvMap(){
@@ -302,11 +306,11 @@ function drawPreview(){
   pvCtx.strokeStyle='#d4a017';pvCtx.lineWidth=2;
   pvCtx.shadowColor='rgba(251,191,36,0.45)';pvCtx.shadowBlur=10;pvCtx.stroke();pvCtx.shadowBlur=0;
 
-  // draggable point handles
+  // draggable point handles (bigger on touch devices)
   for(let i=0;i<mp.length;i++){
     const isEnd=i===0||i===mp.length-1;
     const isDrag=i===pvDrag;
-    const r=isDrag?7:(isEnd?5:4);
+    const r=isTouch?(isDrag?12:(isEnd?10:8)):(isDrag?7:(isEnd?5:4));
     pvCtx.beginPath();pvCtx.arc(mp[i].x,mp[i].y,r,0,6.28);
     pvCtx.fillStyle=isDrag?'#67e8f9':(isEnd?'#fbbf24':'rgba(251,191,36,0.7)');pvCtx.fill();
     pvCtx.beginPath();pvCtx.arc(mp[i].x,mp[i].y,r+4,0,6.28);
@@ -468,7 +472,7 @@ canvas.addEventListener('click',e=>{
   render();
 });
 
-// drag seed points in preview
+// drag seed points in preview (mouse)
 pvCanvas.addEventListener('mousedown',e=>{
   if(mode!=='iterating')return;
   const r=pvCanvas.getBoundingClientRect();
@@ -489,6 +493,35 @@ pvCanvas.addEventListener('mousemove',e=>{
 });
 window.addEventListener('mouseup',()=>{
   if(pvDrag>=0){pvDrag=-1;pvCanvas.style.cursor='grab';computePvMap();drawPreview()}
+});
+
+// drag seed points in preview (touch — mobile)
+pvCanvas.addEventListener('touchstart',e=>{
+  if(mode!=='iterating')return;
+  const touch=e.touches[0];
+  const r=pvCanvas.getBoundingClientRect();
+  const mx=touch.clientX-r.left,my=touch.clientY-r.top;
+  const hitRadius=24; // bigger hit target for fingers
+  let closest=-1,closestDist=hitRadius;
+  for(let i=0;i<seedPts.length;i++){
+    const p=s2pv(seedPts[i].x,seedPts[i].y);
+    const d=Math.hypot(mx-p.x,my-p.y);
+    if(d<closestDist){closest=i;closestDist=d}
+  }
+  if(closest>=0){pvDrag=closest;e.preventDefault();drawPreview()}
+},{passive:false});
+pvCanvas.addEventListener('touchmove',e=>{
+  if(pvDrag<0)return;
+  e.preventDefault();
+  const touch=e.touches[0];
+  const r=pvCanvas.getBoundingClientRect();
+  const mx=touch.clientX-r.left,my=touch.clientY-r.top;
+  const s=pv2s(mx,my);
+  seedPts[pvDrag].x=s.x;seedPts[pvDrag].y=s.y;
+  drawPreview();recompute();
+},{passive:false});
+pvCanvas.addEventListener('touchend',e=>{
+  if(pvDrag>=0){pvDrag=-1;computePvMap();drawPreview()}
 });
 
 document.addEventListener('keydown',e=>{
