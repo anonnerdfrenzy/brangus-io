@@ -320,12 +320,17 @@ function drawPreview(){
 
 function autoFit(pts){
   const w=window.innerWidth,h=window.innerHeight,pad=100;
+  // on mobile, offset downward so the fractal isn't hidden behind the seed preview
+  const yOffset=isTouch?Math.round(PVH/2+20):0;
+  const fitTop=pad+yOffset*2, fitBot=pad;
+  const fitH=h-fitTop-fitBot;
   let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
   for(const p of pts){mnx=Math.min(mnx,p.x);mny=Math.min(mny,p.y);mxx=Math.max(mxx,p.x);mxy=Math.max(mxy,p.y)}
   const bw=mxx-mnx||1,bh=mxy-mny||1;
-  const sc=Math.min((w-pad*2)/bw,(h-pad*2)/bh);
+  const sc=Math.min((w-pad*2)/bw,fitH/bh);
   const cx=(mnx+mxx)/2,cy=(mny+mxy)/2;
-  return pts.map(p=>({x:(p.x-cx)*sc+w/2,y:(p.y-cy)*sc+h/2}));
+  const centerY=fitTop+fitH/2;
+  return pts.map(p=>({x:(p.x-cx)*sc+w/2,y:(p.y-cy)*sc+centerY}));
 }
 
 function render(){drawBg();mode==='drawing'?drawSeedCanvas():drawFractal()}
