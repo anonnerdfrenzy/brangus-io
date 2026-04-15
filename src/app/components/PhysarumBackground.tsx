@@ -396,8 +396,14 @@ export default function PhysarumBackground() {
     document.fonts.ready.then(() => { loop(0); });
 
     const handleResize = () => {
-      displayW = window.innerWidth;
-      displayH = window.innerHeight;
+      const newW = window.innerWidth;
+      const newH = window.innerHeight;
+      // Mobile browsers fire resize when the URL bar shows/hides during scroll,
+      // changing only the height. Ignore those — only reseed on width changes
+      // (actual resizes or orientation flips).
+      if (newW === displayW) return;
+      displayW = newW;
+      displayH = newH;
       canvas.width = displayW;
       canvas.height = displayH;
       cols = Math.ceil(displayW / SCALE);
