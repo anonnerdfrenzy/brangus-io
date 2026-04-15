@@ -42,6 +42,16 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Vibecoded Apps</h3>
               <p className="text-white/50 font-mono text-sm">Small tools and interactive applets</p>
             </Link>
+
+            <a
+              href="https://www.admonymous.co/brangus"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors"
+            >
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Anonymous Feedback</h3>
+              <p className="text-white/50 font-mono text-sm">Tell me anything via admonymous.co/brangus</p>
+            </a>
           </div>
         </div>
 
