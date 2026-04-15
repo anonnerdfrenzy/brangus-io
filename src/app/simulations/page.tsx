@@ -11,19 +11,19 @@ type App = {
 
 const apps: App[] = [
   {
+    title: "FST Explorer",
+    description:
+      "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
+    href: "/simulations/fractal-seed.html",
+    video: "/simulations/fst-preview.mp4",
+  },
+  {
     title: "affirmr",
     description:
       "For when your partner's love language is words of affirmation — and you go quiet under stress. Describe the moment, get specific, genuine things to say.",
     href: "/affirmr",
     image: "/affirmr/preview.png",
     beta: true,
-  },
-  {
-    title: "FST Explorer",
-    description:
-      "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
-    href: "/simulations/fractal-seed.html",
-    video: "/simulations/fst-preview.mp4",
   },
 ];
 
