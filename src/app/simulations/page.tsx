@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-const simulations = [
+const apps = [
+  {
+    title: "affirmr",
+    description: "A little helper for finding specific, warm words of affirmation for a partner. Describe the situation and what they might be insecure about; get suggestions you can actually say.",
+    href: "/affirmr",
+    video: null as string | null,
+  },
   {
     title: "FST Explorer",
     description: "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
@@ -17,16 +23,16 @@ export default function SimulationsPage() {
           <Link href="/" className="font-mono text-xs text-white/40 hover:text-white transition-colors flex items-center gap-1.5">
             &larr; <img src="/raccoon.svg" alt="" className="w-4 h-4" />brangus.io
           </Link>
-          <span className="font-mono text-xs text-white/40">simulations</span>
+          <span className="font-mono text-xs text-white/40">vibecoded apps</span>
         </div>
       </nav>
 
       <main className="max-w-3xl mx-auto px-6 py-16">
-        <h1 className="text-4xl font-bold mb-4">Simulation Applets</h1>
-        <p className="font-mono text-sm text-white/40 mb-12">Interactive toys and explorable explanations</p>
+        <h1 className="text-4xl font-bold mb-4">Vibecoded Apps</h1>
+        <p className="font-mono text-sm text-white/40 mb-12">Small tools, interactive toys, explorable explanations</p>
 
         <div className="space-y-6">
-          {simulations.map((sim) => (
+          {apps.map((sim) => (
             <a
               key={sim.title}
               href={sim.href}

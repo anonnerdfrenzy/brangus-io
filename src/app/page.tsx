@@ -39,8 +39,8 @@ export default function Home() {
             </Link>
 
             <Link href="/simulations" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
-              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Simulations</h3>
-              <p className="text-white/50 font-mono text-sm">Interactive applets and fractal explorers</p>
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Vibecoded Apps</h3>
+              <p className="text-white/50 font-mono text-sm">Small tools and interactive applets</p>
             </Link>
           </div>
         </div>
