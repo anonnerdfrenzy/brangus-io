@@ -85,7 +85,9 @@ export default function AffirmrPage() {
   return (
     <div className="affirmr-app">
       <header className="masthead">
-        <span className="masthead__title">affirmr</span>
+        <span className="masthead__title">
+          affirmr <span className="masthead__beta">beta</span>
+        </span>
         <Link href="/simulations" className="masthead__home">
           &larr; brangus
         </Link>

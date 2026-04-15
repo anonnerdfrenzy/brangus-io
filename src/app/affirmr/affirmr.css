@@ -79,6 +79,23 @@
   font-variation-settings: "opsz" 14, "SOFT" 100;
 }
 
+.masthead__beta {
+  font-family: var(--font-fraunces), serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--terracotta);
+  margin-left: 4px;
+  font-variation-settings: "opsz" 14;
+  padding: 1px 6px;
+  border: 1px solid rgba(198, 114, 82, 0.35);
+  border-radius: 100px;
+  position: relative;
+  top: -1px;
+}
+
 .masthead__home {
   font-family: var(--font-caveat), cursive;
   font-size: 16px;

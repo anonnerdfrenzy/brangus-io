@@ -6,6 +6,7 @@ type App = {
   href: string;
   video?: string;
   image?: string;
+  beta?: boolean;
 };
 
 const apps: App[] = [
@@ -15,6 +16,7 @@ const apps: App[] = [
       "For when your partner's love language is words of affirmation — and you go quiet under stress. Describe the moment, get specific, genuine things to say.",
     href: "/affirmr",
     image: "/affirmr/preview.png",
+    beta: true,
   },
   {
     title: "FST Explorer",
@@ -67,7 +69,14 @@ export default function SimulationsPage() {
                 />
               )}
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 group-hover:text-white/80 transition-colors">{sim.title}</h3>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-white/80 transition-colors flex items-center gap-2">
+                  {sim.title}
+                  {sim.beta && (
+                    <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
+                      beta
+                    </span>
+                  )}
+                </h3>
                 <p className="text-white/50 font-mono text-sm leading-relaxed">{sim.description}</p>
                 <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
                   Launch &rarr;
