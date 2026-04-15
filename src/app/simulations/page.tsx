@@ -7,6 +7,7 @@ type App = {
   video?: string;
   image?: string;
   beta?: boolean;
+  download?: boolean;
 };
 
 const apps: App[] = [
@@ -24,6 +25,14 @@ const apps: App[] = [
     href: "/affirmr",
     image: "/affirmr/preview.png",
     beta: true,
+  },
+  {
+    title: "Todor",
+    description:
+      "A todo list manager for ADHD brains. Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar — even when you tab away to anything else, you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
+    href: "https://github.com/anonnerdfrenzy/todor/releases/latest/download/Todor.dmg",
+    image: "/todor/preview.png",
+    download: true,
   },
 ];
 
@@ -48,6 +57,11 @@ export default function SimulationsPage() {
             <a
               key={sim.title}
               href={sim.href}
+              {...(sim.download
+                ? { download: true }
+                : sim.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className="block group border border-white/10 rounded-lg overflow-hidden hover:border-white/30 transition-colors"
             >
               {sim.video && (
@@ -76,11 +90,27 @@ export default function SimulationsPage() {
                       beta
                     </span>
                   )}
+                  {sim.download && (
+                    <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
+                      mac
+                    </span>
+                  )}
                 </h3>
                 <p className="text-white/50 font-mono text-sm leading-relaxed">{sim.description}</p>
-                <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                  Launch &rarr;
-                </span>
+                {sim.download ? (
+                  <>
+                    <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                      Download .dmg &rarr;
+                    </span>
+                    <p className="mt-2 font-mono text-[11px] text-white/30 leading-relaxed">
+                      First launch: right-click Todor in Applications and choose <span className="text-white/50">Open</span> to bypass the unsigned-developer warning.
+                    </p>
+                  </>
+                ) : (
+                  <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                    Launch &rarr;
+                  </span>
+                )}
               </div>
             </a>
           ))}
