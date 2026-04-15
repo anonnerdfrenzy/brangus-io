@@ -97,17 +97,20 @@ export default function AffirmrPage() {
         <section className={`screen${screen === "welcome" ? " active" : ""}`}>
           <span className="eyebrow">for when words are hard</span>
           <h1>
-            A little help
+            Words of <em>affirmation,</em>
             <br />
-            <em>finding the</em>
+            when your <em>mind</em>
             <br />
-            right thing
-            <br />
-            to say.
+            goes blank.
           </h1>
           <p className="lede">
-            Tell me what&apos;s going on. I&apos;ll help you find words that might
-            actually land — specific, warm, the kind that mean something.
+            Is your partner&apos;s love language words of affirmation — but they
+            don&apos;t come easy to you? Do you go quiet when you&apos;re stressed,
+            and can&apos;t think of what to say?
+          </p>
+          <p className="lede">
+            Tell me what&apos;s going on and I&apos;ll help you find something
+            specific and real — words that&apos;ll actually make them feel loved.
           </p>
           <span className="ornament">&#10070;</span>
           <div className="actions">

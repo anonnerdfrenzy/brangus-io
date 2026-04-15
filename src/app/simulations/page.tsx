@@ -1,15 +1,25 @@
 import Link from "next/link";
 
-const apps = [
+type App = {
+  title: string;
+  description: string;
+  href: string;
+  video?: string;
+  image?: string;
+};
+
+const apps: App[] = [
   {
     title: "affirmr",
-    description: "A little helper for finding specific, warm words of affirmation for a partner. Describe the situation and what they might be insecure about; get suggestions you can actually say.",
+    description:
+      "For when your partner's love language is words of affirmation — and you go quiet under stress. Describe the moment, get specific, genuine things to say.",
     href: "/affirmr",
-    video: null as string | null,
+    image: "/affirmr/preview.png",
   },
   {
     title: "FST Explorer",
-    description: "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
+    description:
+      "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
     href: "/simulations/fractal-seed.html",
     video: "/simulations/fst-preview.mp4",
   },
@@ -46,6 +56,14 @@ export default function SimulationsPage() {
                   muted
                   playsInline
                   className="w-full aspect-video object-cover"
+                />
+              )}
+              {!sim.video && sim.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={sim.image}
+                  alt=""
+                  className="w-full aspect-video object-cover object-top"
                 />
               )}
               <div className="p-6">

@@ -23,8 +23,9 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "affirmr — find the right thing to say",
-  description: "A little helper for finding specific, warm words of affirmation.",
+  title: "affirmr — words of affirmation, when your mind goes blank",
+  description:
+    "For when your partner's love language is words of affirmation but you go quiet under stress. Get specific, genuine affirmations tailored to the moment.",
 };
 
 export const viewport: Viewport = {
