@@ -54,19 +54,27 @@ export default function TodorPage() {
       </nav>
 
       <main className="max-w-3xl mx-auto px-6 py-16">
-        <header className="mb-10">
-          <h1 className="text-5xl font-bold mb-3 flex items-center gap-3 flex-wrap">
-            Todor
-            <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
-              mac only
-            </span>
-            <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
-              open source
-            </span>
-          </h1>
-          <p className="text-white/60 font-mono text-sm leading-relaxed max-w-2xl">
-            A todo list manager for ADHD brains. Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you&rsquo;re supposed to be working on stays pinned to your menu bar so you can glance up and remember what you&rsquo;re doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.
-          </p>
+        <header className="mb-10 flex items-start gap-6 flex-wrap">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/todor/icon.png"
+            alt="Todor app icon"
+            className="w-24 h-24 rounded-2xl shadow-lg shrink-0"
+          />
+          <div className="flex-1 min-w-[260px]">
+            <h1 className="text-5xl font-bold mb-3 flex items-center gap-3 flex-wrap">
+              Todor
+              <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
+                mac only
+              </span>
+              <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
+                open source
+              </span>
+            </h1>
+            <p className="text-white/60 font-mono text-sm leading-relaxed">
+              A todo list manager for ADHD brains. Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you&rsquo;re supposed to be working on stays pinned to your menu bar so you can glance up and remember what you&rsquo;re doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.
+            </p>
+          </div>
         </header>
 
         <div className="border border-white/10 rounded-lg overflow-hidden mb-10">
