@@ -167,23 +167,23 @@ export default function AffirmrPage() {
         <section className={`screen${screen === "insecurity" ? " active" : ""}`}>
           <span className="eyebrow">now, the tender part</span>
           <h2>
-            What might they be <em>insecure</em> about — right now?
+            What might they be <em>insecure</em> about?
           </h2>
           <p className="lede">
-            Your best guess. What&apos;s the worry underneath tonight? The thing
-            they might not say out loud.
+            List at least three things they might be feeling insecure about
+            right now. Your best guesses — they don&apos;t have to be right.
           </p>
           {error && <div className="affirmr-error">{error}</div>}
           <div className="field">
             <label className="field__label" htmlFor="insecurity-input">
-              — the quiet worry
+              — their worries
             </label>
             <textarea
               id="insecurity-input"
               ref={insecurityRef}
               value={insecurity}
               onChange={(e) => setInsecurity(e.target.value)}
-              placeholder="e.g. that their work doesn't matter, or that they're falling behind peers..."
+              placeholder={"e.g.\n- that the grant won't come through and they wasted months\n- that they're not as smart as their collaborators\n- that I'm annoyed they've been so distracted"}
               autoComplete="off"
             />
           </div>

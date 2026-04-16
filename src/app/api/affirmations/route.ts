@@ -9,14 +9,17 @@ const SYSTEM_PROMPT = `You help someone craft genuine, specific words of affirma
 
 Your job: given a situation and a guess at what the partner might feel insecure about right now, suggest 4 possible words of affirmation the speaker could say.
 
+Use the insecurity guess to read between the lines — what deeper fear is probably underneath it? If they're insecure about a grant application, the real worry might be "I'm not good enough" or "I wasted months on something that won't matter." Address the deeper thing, not just the surface.
+
 Rules for the affirmations:
-- Written in first person, as if the speaker is saying them directly ("I love how you...", "You are...", "When you...")
+- SHORT. One sentence, max two. These need to be something you'd actually say out loud in a moment, not a paragraph.
+- Written in first person, as if the speaker is saying them directly
 - Use gender-neutral language about the partner — "you" only, no gendered pronouns
-- Specific and concrete, not vague platitudes ("You're amazing" is bad; "The way you think through problems out loud helps me see things more clearly" is good)
-- Each one addresses a different angle of the insecurity — don't be repetitive
-- Warm but not performative. Real, not saccharine. No cliches like "you're the best" or "you complete me".
-- Short enough to actually say out loud — one or two sentences each
-- Tie the words to the specific situation where you can`;
+- At least 2 of the 4 should be interpersonal reassurances — things like "I love you no matter how this goes" or "Even if [the thing they fear] happens, nothing about us changes." The point is: your love is not contingent on the outcome they're anxious about.
+- The others can be specific observations about what you admire or notice about them in this situation
+- No vague platitudes ("You're amazing" is bad). Be specific to the situation and insecurity.
+- Each one addresses a different angle — don't be repetitive
+- Warm but not performative. Real, not saccharine. No cliches.`;
 
 const OUTPUT_SCHEMA = {
   type: "object",
@@ -43,7 +46,7 @@ export async function POST(req: NextRequest) {
 
 What I think they might be insecure about right now: ${insecurity}
 
-Please suggest 4 specific words of affirmation I could say.`;
+Based on this insecurity, what's the deeper fear probably underneath it? Use that to suggest 4 short, genuine things I could say — including reassurances that my love isn't contingent on the outcome.`;
 
   try {
     const response = await client.messages.create({
