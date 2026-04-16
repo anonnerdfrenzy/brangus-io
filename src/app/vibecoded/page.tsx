@@ -15,14 +15,14 @@ const apps: App[] = [
   {
     title: "FST Explorer",
     description:
-      "Draw a fractal seed and iterate it — every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
+      "Draw a fractal seed and iterate it; every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
     href: "/simulations/fractal-seed.html",
     video: "/simulations/fst-preview.mp4",
   },
   {
     title: "affirmr",
     description:
-      "For when your partner's love language is words of affirmation — and you go quiet under stress. Describe the moment, get specific, genuine things to say.",
+      "For when your partner's love language is words of affirmation, and you go quiet under stress. Describe the moment, get specific, genuine things to say.",
     href: "/affirmr",
     image: "/affirmr/preview.png",
     beta: true,
@@ -30,7 +30,7 @@ const apps: App[] = [
   {
     title: "Todor",
     description:
-      "A todo list manager for ADHD brains. Mac only and open source (MIT). Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar — even when you tab away to anything else, you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
+      "A todo list manager for ADHD brains. Mac only and open source (MIT). Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar, even when you tab away to anything else, so you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
     href: "https://github.com/anonnerdfrenzy/todor/releases/latest",
     image: "/todor/preview.png",
     badges: ["mac only", "open source"],
