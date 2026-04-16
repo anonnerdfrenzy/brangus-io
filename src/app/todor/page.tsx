@@ -32,11 +32,6 @@ const features: { title: string; body: string }[] = [
     body:
       "Help → Setup Claude Code copies a prompt that teaches Claude how to read, add, edit, and set due dates on your todos directly from any chat. Bundled CLI under the hood.",
   },
-  {
-    title: "Update notifications",
-    body:
-      "Checks GitHub Releases on launch (throttled) and surfaces a dialog when a new version is available, with a one-click button to grab the new .dmg.",
-  },
 ];
 
 export default function TodorPage() {
