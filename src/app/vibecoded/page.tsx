@@ -7,6 +7,7 @@ type App = {
   video?: string;
   image?: string;
   beta?: boolean;
+  badges?: string[];
   download?: { dmgUrl: string; releaseUrl: string };
 };
 
@@ -29,9 +30,10 @@ const apps: App[] = [
   {
     title: "Todor",
     description:
-      "A todo list manager for ADHD brains. Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar — even when you tab away to anything else, you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
+      "A todo list manager for ADHD brains. Mac only and open source (MIT). Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar — even when you tab away to anything else, you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
     href: "https://github.com/anonnerdfrenzy/todor/releases/latest",
     image: "/todor/preview.png",
+    badges: ["mac only", "open source"],
     download: {
       dmgUrl: "https://github.com/anonnerdfrenzy/todor/releases/latest/download/Todor.dmg",
       releaseUrl: "https://github.com/anonnerdfrenzy/todor/releases/latest",
@@ -81,18 +83,21 @@ export default function SimulationsPage() {
             );
 
             const heading = (
-              <h3 className="text-xl font-bold mb-2 transition-colors flex items-center gap-2">
+              <h3 className="text-xl font-bold mb-2 transition-colors flex items-center gap-2 flex-wrap">
                 {sim.title}
                 {sim.beta && (
                   <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
                     beta
                   </span>
                 )}
-                {sim.download && (
-                  <span className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5">
-                    mac
+                {(sim.badges ?? []).map((b) => (
+                  <span
+                    key={b}
+                    className="text-[10px] uppercase tracking-widest font-mono font-normal text-white/40 border border-white/20 rounded-full px-2 py-0.5"
+                  >
+                    {b}
                   </span>
-                )}
+                ))}
               </h3>
             );
 
