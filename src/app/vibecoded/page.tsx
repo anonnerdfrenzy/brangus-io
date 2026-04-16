@@ -30,7 +30,7 @@ const apps: App[] = [
     title: "Todor",
     description:
       "A todo list manager for ADHD brains. Everything is keyboard-driven (Cmd+K shows every command). Built-in Pomodoro cycles. The todo you're supposed to be working on stays pinned to your menu bar — even when you tab away to anything else, you can glance up and remember what you're doing. Includes a one-click setup so Claude Code can read, add, edit, and set due dates on your todos for you.",
-    href: "https://github.com/anonnerdfrenzy/todor/releases/latest/download/Todor.dmg",
+    href: "https://github.com/anonnerdfrenzy/todor/releases/latest",
     image: "/todor/preview.png",
     download: true,
   },
@@ -57,9 +57,7 @@ export default function SimulationsPage() {
             <a
               key={sim.title}
               href={sim.href}
-              {...(sim.download
-                ? { download: true }
-                : sim.href.startsWith("http")
+              {...(sim.href.startsWith("http")
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
               className="block group border border-white/10 rounded-lg overflow-hidden hover:border-white/30 transition-colors"
@@ -97,20 +95,9 @@ export default function SimulationsPage() {
                   )}
                 </h3>
                 <p className="text-white/50 font-mono text-sm leading-relaxed">{sim.description}</p>
-                {sim.download ? (
-                  <>
-                    <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                      Download .dmg &rarr;
-                    </span>
-                    <p className="mt-2 font-mono text-[11px] text-white/30 leading-relaxed">
-                      First launch: right-click Todor in Applications and choose <span className="text-white/50">Open</span> to bypass the unsigned-developer warning.
-                    </p>
-                  </>
-                ) : (
-                  <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                    Launch &rarr;
-                  </span>
-                )}
+                <span className="inline-block mt-4 font-mono text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                  {sim.download ? "Download for Mac \u2192" : "Launch \u2192"}
+                </span>
               </div>
             </a>
           ))}
