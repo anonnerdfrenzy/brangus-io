@@ -12,18 +12,20 @@ type Post = {
 
 // Popularity order from Substack archive sorted by top
 const POPULARITY_ORDER: Record<string, number> = {
-  "brangus's 10 rules for sleeping with women": 1,
-  "i had sex with my brother's wife when i was thirteen": 2,
-  "how to vape on planes without getting caught": 3,
-  "i stopped going to school in fifth grade and i don't regret it": 4,
-  "predeployment interview excerpt — jan 12, 2029": 5,
-  "is buying dinner for women defecting against other men?": 6,
-  "ask \"why do you believe that?\" not \"do you have any evidence?\"": 7,
-  "brangus's advice for making the most out of inkhaven 2": 8,
-  "i regret to inform you that exist takes two inputs": 9,
-  "you would probably punish hitler even if nobody would find out if you didn't": 10,
-  "\"burden of proof\" is a weird concept": 11,
-  "an apology on behalf of fools for the detail oriented": 12,
+  "how to forecast the chance that a potential partner will cancel you": 1,
+  "why i'm teaching tiktokers about existential risk": 2,
+  "brangus's 10 rules for sleeping with women": 3,
+  "i had sex with my brother's wife when i was thirteen": 4,
+  "how to vape on planes without getting caught": 5,
+  "i stopped going to school in fifth grade and i don't regret it": 6,
+  "predeployment interview excerpt — jan 12, 2029": 7,
+  "is buying dinner for women defecting against other men?": 8,
+  "ask \"why do you believe that?\" not \"do you have any evidence?\"": 9,
+  "brangus's advice for making the most out of inkhaven 2": 10,
+  "i regret to inform you that exist takes two inputs": 11,
+  "you would probably punish hitler even if nobody would find out if you didn't": 12,
+  "\"burden of proof\" is a weird concept": 13,
+  "an apology on behalf of fools for the detail oriented": 14,
 };
 
 const LIKES: Record<string, number> = {
