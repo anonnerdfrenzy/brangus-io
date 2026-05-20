@@ -8,6 +8,60 @@ type Talk = {
   image: string;
 };
 
+type Stream = {
+  date: string;
+  title: string;
+  href: string;
+};
+
+const streams: Stream[] = [
+  {
+    date: "May 18",
+    title: "Good mornin' folk. Let's try some shit.",
+    href: "https://x.com/i/broadcasts/1rGmqoMpDMBGy",
+  },
+  {
+    date: "May 17",
+    title: "Branguphiles Of The World, Rise Up!",
+    href: "https://x.com/i/broadcasts/1qJVmQqzDewGB",
+  },
+  {
+    date: "May 16",
+    title: "Good Morning again, Branguphiles",
+    href: "https://x.com/i/broadcasts/1RJjpzZWbnaKw",
+  },
+  {
+    date: "May 16",
+    title: "Good Morning, Branguphiles",
+    href: "https://x.com/i/broadcasts/1mGPaLknXkZJN",
+  },
+  {
+    date: "May 15",
+    title: "Singing a bit before heading off; working on a new song",
+    href: "https://x.com/i/broadcasts/1NGaraNjBRnJj",
+  },
+  {
+    date: "May 15",
+    title: "Morning Roguelikes And Maybe Breakfast",
+    href: "https://x.com/i/broadcasts/1MKgNgeovrXxL",
+  },
+  {
+    date: "May 14",
+    title: "Cyber Punk 2077, let's have brain sex",
+    href: "https://x.com/i/broadcasts/1qJVmQBpjbYGB",
+  },
+  {
+    date: "May 14",
+    title: "Slay The Spire 2 w Brangus (until dinner)",
+    href: "https://x.com/i/broadcasts/1AxRnakmQRkxl",
+  },
+  {
+    date: "May 14",
+    title: "sad brangus w guitar in his room (better audio quality)",
+    href: "https://x.com/i/broadcasts/1yxBeMoZBzpJN",
+  },
+];
+
 const talks: Talk[] = [
   {
     show: "Mutual Understanding",
@@ -49,8 +103,9 @@ export default function TalkingPage() {
 
       <main className="max-w-3xl mx-auto px-6 py-16">
         <h1 className="text-4xl font-bold mb-4">Talking</h1>
-        <p className="font-mono text-sm text-white/40 mb-12">Podcasts and conversations I&apos;ve shown up on</p>
+        <p className="font-mono text-sm text-white/40 mb-12">Podcasts, conversations, and live streams from @ratorthodox on X</p>
 
+        <h2 className="text-2xl font-bold mb-6">Podcasts</h2>
         <div className="space-y-6">
           {talks.map((t) => (
             <a
@@ -81,6 +136,40 @@ export default function TalkingPage() {
             </a>
           ))}
         </div>
+
+        <h2 className="text-2xl font-bold mt-16 mb-2">Streams</h2>
+        <p className="font-mono text-xs text-white/40 mb-6">
+          Live on{" "}
+          <a
+            href="https://x.com/ratorthodox"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/60 hover:text-white underline underline-offset-4 transition-colors"
+          >
+            @ratorthodox
+          </a>
+          . Replays available on X for a few days after each broadcast.
+        </p>
+        <ul className="divide-y divide-white/10 border-y border-white/10">
+          {streams.map((s) => (
+            <li key={s.href}>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-baseline gap-4 py-3 group hover:text-white transition-colors"
+              >
+                <time className="font-mono text-xs text-white/30 shrink-0 w-16">{s.date}</time>
+                <span className="text-sm text-white/70 group-hover:text-white transition-colors flex-1">
+                  {s.title}
+                </span>
+                <span className="font-mono text-xs text-white/30 group-hover:text-white/60 transition-colors">
+                  Watch &rarr;
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </main>
 
       <footer className="border-t border-white/10 py-8 px-6">

@@ -12,6 +12,13 @@ type App = {
 
 const apps: App[] = [
   {
+    title: "Refutree",
+    description:
+      "A forum for explicit disagreement. State your premises and conclusion; opponents must contest a specific premise or the passage from premises to conclusion. Nothing else is admissible.",
+    href: "https://refutree.com",
+    image: "/refutree/preview.png",
+  },
+  {
     title: "FST Explorer",
     description:
       "Draw a fractal seed and iterate it; every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
