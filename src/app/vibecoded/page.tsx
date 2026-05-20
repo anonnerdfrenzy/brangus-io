@@ -34,6 +34,13 @@ const apps: App[] = [
     image: "/todor/preview.png",
     download: true,
   },
+  {
+    title: "Refutree",
+    description:
+      "A forum for explicit disagreement. State your premises, state your conclusion, and invite an opponent to do the same — and only the same. Every objection must counter a specific premise or the passage from premises to conclusion. Nothing else is admissible.",
+    href: "https://refutree.com",
+    image: "/refutree/preview.png",
+  },
 ];
 
 export default function SimulationsPage() {
