@@ -12,6 +12,14 @@ type App = {
 
 const apps: App[] = [
   {
+    title: "Survival LLM",
+    description:
+      "A free AI assistant and survival library that runs on your own computer, with no internet. Ask it about blackouts, first aid, safe water, repairs or risks, and it answers from 1.5 million offline articles (medical guides, FEMA and CDC, survival manuals, Wikipedia) and shows you the source. Download, open, and it sets itself up; no terminal needed.",
+    href: "/survival-llm",
+    image: "/survival-llm/preview.png",
+    badges: ["mac + windows", "works offline", "open source"],
+  },
+  {
     title: "FST Explorer",
     description:
       "Draw a fractal seed and iterate it; every line segment gets replaced by a copy of your drawing. Create Koch curves, Lévy C curves, and your own fractal patterns.",
