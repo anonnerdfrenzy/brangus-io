@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PhysarumBackground from "./components/PhysarumBackground";
 
 export default function Home() {
@@ -14,14 +13,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Content below */}
+      {/* Content below. Plain <a>, not next/link: Link's background fetch gave no click feedback on slow
+          connections, so the buttons looked dead for seconds. A normal page load shows the browser's spinner at once. */}
       <section className="relative z-10 border-t border-white/10">
         <div className="max-w-3xl mx-auto px-6 py-24">
           <div className="space-y-16">
-            <Link href="/blog" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+            <a href="/blog" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Writing</h3>
               <p className="text-white/50 font-mono text-sm">Blog posts from ratorthodox.substack.com</p>
-            </Link>
+            </a>
 
             <a
               href="https://x.com/ratorthodox"
@@ -33,20 +33,20 @@ export default function Home() {
               <p className="text-white/50 font-mono text-sm">@ratorthodox on X</p>
             </a>
 
-            <Link href="/music" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+            <a href="/music" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Music</h3>
               <p className="text-white/50 font-mono text-sm">Tracks on Spotify and SoundCloud</p>
-            </Link>
+            </a>
 
-            <Link href="/vibecoded" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+            <a href="/vibecoded" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Vibecoded Apps</h3>
               <p className="text-white/50 font-mono text-sm">Small tools and interactive applets</p>
-            </Link>
+            </a>
 
-            <Link href="/talking" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
+            <a href="/talking" className="block group border-l border-white/20 pl-6 hover:border-white/60 transition-colors">
               <h3 className="text-2xl font-bold mb-2 group-hover:text-white/80 transition-colors">Talking</h3>
               <p className="text-white/50 font-mono text-sm">Podcast appearances and conversations</p>
-            </Link>
+            </a>
 
             <a
               href="https://www.admonymous.co/brangus"
